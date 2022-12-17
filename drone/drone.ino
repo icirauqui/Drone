@@ -2,14 +2,19 @@
 
 #include "mpu.h"
 #include "controller.h"
+#include "battery.h"
 
 
 void setup() {
   // put your setup code here, to run once:
   pinMode(LED_BUILTIN, OUTPUT);
   //setup_mpu();
+  Serial.begin(115200);
+  while(!Serial);
+
+
   mpu_setup();
-  controller_setup();
+  //controller_setup();
 }
 
 void loop() {
@@ -23,6 +28,11 @@ void loop() {
 
   //Serial.print(ag);
 
-  //mpu_loop();
-  controller_loop();
+  //mpu_read(true);
+
+
+  mpu_loop();
+
+  //delay(1000);
+  //controller_loop();
 }
