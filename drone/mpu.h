@@ -236,7 +236,7 @@ void mpu_setup() {
 
 
 
-void mpu_loop(void verbose = false) {
+void mpu_loop(bool verbose = false) {
   while (micros() - timer_loop < MPU_CYCLE) {
     // do nothing
   }

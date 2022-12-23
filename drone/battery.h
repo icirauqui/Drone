@@ -1,4 +1,4 @@
-#define BAT_CYCLE = 50000
+#define BAT_CYCLE 50000
 
 long timer_loop;
 float bat_v, bat_read = 0.0;

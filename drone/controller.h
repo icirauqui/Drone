@@ -10,10 +10,10 @@
  * 
  */
 
-#define PIN_R 4
-#define PIN_P 5
-#define PIN_T 6
-#define PIN_Y 7
+#define PIN_R 6
+#define PIN_P 7
+#define PIN_T 8
+#define PIN_Y 9
 
 
 long loop_timer, exec_time;
@@ -271,7 +271,8 @@ bool check_loops() {
 
 
 
-void controller_loop() {
+void controller_loop(float &rc_t, float &rc_p, float &rc_r, float &rc_y) {
+
   while (micros() - loop_timer < 10000);
   exec_time = (micros() - loop_timer) / 1000;
   loop_timer = micros();
@@ -345,6 +346,12 @@ void controller_loop() {
   rc_r_cons = map(rc_r_raw, range_r_raw[0], range_r_raw[1], -30, 30);
   rc_y_cons = map(rc_y_raw, range_y_raw[0], range_y_raw[1], -30, 30);
 
+  
+  rc_t = rc_t_cons;
+  rc_p = rc_p_cons;
+  rc_r = rc_r_cons;
+  rc_y = rc_y_cons;
+  
   PrintConsignment(true);
 
 }

@@ -1,38 +1,39 @@
 // Drone control
 
-#include "mpu.h"
+//#include "mpu.h"
 #include "controller.h"
-#include "battery.h"
+//#include "battery.h"
+#include "motors.h"
+
+
+float rc_t = 0.0;
+float rc_p = 0.0;
+float rc_r = 0.0;
+float rc_y = 0.0;
 
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode(LED_BUILTIN, OUTPUT);
-  //setup_mpu();
+  
   Serial.begin(115200);
   while(!Serial);
 
 
-  mpu_setup();
-  //controller_setup();
+  //mpu_setup();
+  controller_setup();
+  motors_setup();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  //digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  //delay(1000);                      // wait for a second
-  //digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  //delay(1000);                      // wait for a second
+  //mpu_loop(false);
+  controller_loop(rc_t, rc_p, rc_r, rc_y);
+  motors_loop(rc_t, rc_p, rc_r, rc_y);
 
-  //char ag = mpu_read(true);
-
-  //Serial.print(ag);
-
-  //mpu_read(true);
-
-
-  mpu_loop();
+  //Serial.print("  - Angle {Pitch, Roll} = {");
+  //Serial.print(ang_p);
+  //Serial.print(", ");
+  //Serial.print(ang_r);
+  //Serial.println("} deg");
 
   //delay(1000);
-  //controller_loop();
 }
