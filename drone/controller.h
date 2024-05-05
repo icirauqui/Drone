@@ -273,7 +273,10 @@ bool check_loops() {
 
 void controller_loop(float &rc_t, float &rc_p, float &rc_r, float &rc_y) {
 
-  while (micros() - loop_timer < 10000);
+  if (micros() - loop_timer < 10000) {
+    return;
+  }
+
   exec_time = (micros() - loop_timer) / 1000;
   loop_timer = micros();
 

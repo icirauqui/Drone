@@ -3,6 +3,13 @@
 #include "I2Cdev.h"
 #include "MPU6050.h"
 
+const int GYRO_CONFIG_REGISTER = 0x1B;
+const int ACCEL_CONFIG_REGISTER = 0x1C;
+const float GYRO_SCALE_FACTOR = 65.5;  // Scale factor for 500 dps
+const float ACCEL_SCALE_FACTOR = 4096;  // Scale factor for +/- 8g
+const float RAD_TO_DEG = 57.2957795;  // Conversion factor from radians to degrees
+
+
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation is used in I2Cdev.h
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
     #include "Wire.h"
