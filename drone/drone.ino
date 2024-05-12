@@ -4,7 +4,7 @@
 #include "controller.h"
 //#include "battery.h"
 #include "motors.h"
-
+#include "display.h"
 
 float rc_t = 0.0;
 float rc_p = 0.0;
@@ -18,6 +18,7 @@ void setup() {
   Serial.begin(115200);
   while(!Serial);
 
+  display_setup();
 
   //mpu_setup();
   controller_setup();
